@@ -116,6 +116,13 @@ namespace {
         } 
 
     }
+
+    // untuk sinkronisasi kontak dan displaying purpose kontak
+    void synchronize(Contact arr1[], Contact arr2[]){
+        for (int i = 0;i < MAX_CONTACT;i++){
+            arr1[i] = arr2[i];
+        }
+    }
 }
 
 
@@ -183,6 +190,7 @@ void PhoneBook::lihatSortedBy(int sortBy, int ascending){
     }else if (sortBy == 1){
         quickSortRecursive(displaying_purposed_kontak, 0, MAX_CONTACT-1, ascending, sortBy);
         lihatSemuaNamaKontak(displaying_purposed_kontak, head, 0);
+        synchronize(displaying_purposed_kontak, kontak);
     }
 }
 
