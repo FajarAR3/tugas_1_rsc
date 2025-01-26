@@ -87,9 +87,10 @@ int main(){
         } else if (inp == "2"){ // SEARCHING BY NAME
             while (true){
                 string searched_nama;
-                cout << "Masukkan nama kontak yang dicari: ";
+                cout << "Back to home [BACK]\nMasukkan nama kontak yang dicari: ";
                 getline(cin, searched_nama);
                 cin.clear();
+                if (searched_nama == "BACK") break;
                 Contact searched_kontak = phonebook.search(searched_nama);
                 if (searched_kontak.getNama() == searched_nama){
                     while (true){
