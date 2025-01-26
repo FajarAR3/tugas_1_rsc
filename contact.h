@@ -8,7 +8,8 @@ class Contact {
 
     public:
     // CONTRUCTOR
-    Contact(string param_nama, string param_tempat_tinggal, string param_alamat, string param_kekuatan);
+    Contact(); // Kontak default
+    Contact(string param_nama, string param_tempat_tinggal, string param_alamat, string param_kekuatan); // Kontak spesifik
 
     // ACCESSOR
     const string& getNama() const;

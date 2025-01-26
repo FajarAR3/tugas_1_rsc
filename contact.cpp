@@ -1,5 +1,13 @@
 #include "contact.h"
 
+// CONSTRUCTOR kontak default
+Contact::Contact(){
+    nama = "Belum ada informasi nama";
+    tempat_tinggal = "Belum ada informasi tempat tinggal";
+    alamat = "Belum ada informasi alamat";
+    kekuatan = "Belum ada informasi kekuatan";
+}
+
 Contact::Contact(string param_nama, string param_tempat_tinggal, string param_alamat, string param_kekuatan) :
    nama(param_nama), tempat_tinggal(param_tempat_tinggal), alamat(param_alamat), kekuatan(param_kekuatan)
 {
