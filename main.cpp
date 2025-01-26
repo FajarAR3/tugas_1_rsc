@@ -120,16 +120,19 @@ int main(){
             break; //break while loop, program selesai, data otomatis terhapus
         }
         else if(inp == "4"){ // SORT
-            cout << "Sorted by: [0] Urutan masuk [1] Nama";
+            cout << "Sorted by: [0] Urutan masuk [1] Nama : ";
             cin >> sortedBy;
             newLine();
             if (sortedBy == 1){ // jika sort by nama, akan dipilih descending atau ascending
-                cout << "[0] Descending [1] Ascending";
+                cout << "[0] Descending [1] Ascending : ";
                 cin >> ascending;
                 newLine();
             } else { // jika sort by urutan masuk/waktu, data otomatis terurut ascending
                 ascending = 1;
             }
+        }
+        else{
+            cout << "Masukkan input yang valid!\n\n";
         }
 
     }
