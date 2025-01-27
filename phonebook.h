@@ -21,7 +21,8 @@ class PhoneBook {
     // 1 = berdasarkan nama
     // ascending = 1 : terurut membesar
     // asceding = 0 : terurut mengecil
-    const Contact& search(string nama); // searching kontak by nama
+    Contact& search(string nama); // searching kontak by nama
+    void editKontak(Contact& searched_kontak); // untuk edit kontak 
     
     private:
     Contact kontak[MAX_CONTACT]; // array of Contact, array ini digunakan untuk keperluan output berdasarkan waktu

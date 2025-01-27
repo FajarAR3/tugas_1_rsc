@@ -1,7 +1,7 @@
 #include "phonebook.h"
 #include <iostream>
 
-Contact anonymous = Contact();
+Contact anonymous = Contact(); // untuk kontak default, place holder isi phonebook, dan sebagai representasi kontak yang belum diisi
 // helping function untuk algoritma quicksort dan print nama sesuai kategori (waktu atau nama)
 namespace {
 
@@ -194,7 +194,7 @@ void PhoneBook::lihatSortedBy(int sortBy, int ascending){
     }
 }
 
-const Contact& PhoneBook::search(string nama){
+Contact& PhoneBook::search(string nama){
     if (head == -1){
         cout << "Belum ada kontak!\n\n";
         return anonymous;
@@ -209,4 +209,47 @@ const Contact& PhoneBook::search(string nama){
     } else {
         return anonymous;
     }
+}
+
+void PhoneBook::editKontak(Contact& searched_kontak){
+    string kategori;
+    cout << "\nApa yang ingin Anda ubah dari kontak ini\n";
+    cout << "Nama [NAMA]\nTempat Tinggal [TEMPAT_TINGGAL]\nAlamat [ALAMAT]\nKekuatan [KEKUATAN]\nMasukkan opsi:";
+    getline(cin, kategori);
+    cin.clear();
+    if (kategori == "NAMA"){
+        string nama_baru;
+        cout << "Masukkan nama baru: ";
+        getline(cin, nama_baru);
+        cin.clear();
+        searched_kontak.setNama(nama_baru);
+        cout << "Nama berhasil diubah!\n";
+    }
+    else if (kategori == "TEMPAT_TINGGAL"){
+        string tempat_tinggal_baru;
+        cout << "Masukkan tempat tinggal baru: ";
+        getline(cin, tempat_tinggal_baru);
+        cin.clear();
+        searched_kontak.setTempatTinggal(tempat_tinggal_baru);
+        cout << "Tempat tinggal berhasil diubah!\n";
+    }
+    else if (kategori == "ALAMAT"){
+        string alamat_baru;
+        cout << "Masukkan alamat baru: ";
+        getline(cin, alamat_baru);
+        cin.clear();
+        searched_kontak.setAlamat(alamat_baru);
+        cout << "Alamat berhasil diubah!\n";
+    }
+    else if (kategori == "KEKUATAN"){
+        string kekuatan_baru;
+        cout << "Masukkan kekuatan baru: ";
+        getline(cin, kekuatan_baru);
+        cin.clear();
+        searched_kontak.setKekuatan(kekuatan_baru);
+        cout << "Kekuatan berhasil diubah!\n";
+    } else {
+        cout << "Masukkan pilihan yang valid!\n";
+    }
+    synchronize(displaying_purposed_kontak, kontak);
 }

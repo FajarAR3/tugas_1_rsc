@@ -56,7 +56,7 @@ int main(){
         phonebook.lihatSortedBy(sortedBy, ascending);
         cout << endl;
         
-        to_be_printed = "Daftar Perintah: [1] ADD [2] SEARCH [3] EXIT [4] SORT";
+        to_be_printed = "Daftar Perintah: [1] ADD [2] SEARCH [3] HAPUS [4] SORT [5] EXIT";
         printPembatasHorizontal();
         string inp;
         printCellTabel(to_be_printed);
@@ -87,11 +87,11 @@ int main(){
         } else if (inp == "2"){ // SEARCHING BY NAME
             while (true){
                 string searched_nama;
-                cout << "Back to home [BACK]\nMasukkan nama kontak yang dicari: ";
+                cout << "\nBack to home [BACK]\nMasukkan nama kontak yang dicari: ";
                 getline(cin, searched_nama);
                 cin.clear();
                 if (searched_nama == "BACK") break;
-                Contact searched_kontak = phonebook.search(searched_nama);
+                Contact& searched_kontak = phonebook.search(searched_nama);
                 if (searched_kontak.getNama() == searched_nama){
                     while (true){
                         cout << "\nInformasi Kontak:\n";
@@ -100,10 +100,13 @@ int main(){
                         cout << "Alamat: " << searched_kontak.getAlamat() << endl;
                         cout << "Kekuatan: " << searched_kontak.getKekuatan() << endl;
                         string cont;
-                        cout << "Continue? [Y] : ";
+                        cout << "Continue? [Y] Edit Kontak [EDIT] : ";
                         getline(cin, cont);
                         cin.clear();
                         if (cont == "Y") break;
+                        else if (cont == "EDIT"){
+                           phonebook.editKontak(searched_kontak);
+                        }
                     }
                 } else {
                     cout << "Tidak ada kontak bernama " << searched_nama << " silahkan masukkan kembali nama!\n\n";
@@ -117,8 +120,21 @@ int main(){
                 }
             }
         }
-        else if(inp == "3"){ // EXIT
-            break; //break while loop, program selesai, data otomatis terhapus
+        else if(inp == "3"){ // HAPUS KONTAK
+            while (true){
+                phonebook.lihatSortedBy(sortedBy, ascending);
+                string to_be_deleted;
+                cout << "Masukkan nama kontak yang ingin dihapus: ";
+                getline(cin, to_be_deleted);
+                cin.clear();
+                phonebook.search(to_be_deleted);
+                phonebook.hapusKontak(to_be_deleted);
+                cout << "Back to Home? [BACK] : ";
+                getline(cin, to_be_deleted);
+                cin.clear();
+                if (to_be_deleted == "BACK") break;
+            }
+            
         }
         else if(inp == "4"){ // SORT
             cout << "Sorted by: [0] Urutan masuk [1] Nama : ";
@@ -131,6 +147,9 @@ int main(){
             } else { // jika sort by urutan masuk/waktu, data otomatis terurut ascending
                 ascending = 1;
             }
+        }
+        else if (inp == "5"){ // EXIT
+            break; //break while loop, program selesai, data otomatis terhapus
         }
         else{
             cout << "Masukkan input yang valid!\n\n";
